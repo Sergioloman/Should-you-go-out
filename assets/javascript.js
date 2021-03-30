@@ -2,15 +2,7 @@
 var giphyKey = 'qde5re80EUg2L5yAKth9QabSkIrGiKWb'
 var weatherKey = '324a506b2f6b0f1b44fde14916e4b006'
 
-function keywordGenerator(){
-   
-    
-    console.log('this is an indoor activity suggestion')
 
-
-    console.log('this is an outdoor activity suggestion')
-
-}
 
 function getActivity(activity){
     /*
@@ -26,8 +18,7 @@ function getActivity(activity){
         console.log(data3)
 
         var suggestion = data3.activity
-        $("#gif-container").append("<h4>" + suggestion + "</h4>")
-
+        $("#suggestion-container").append("<h4>" + suggestion + "</h4>")
     })
 }
 getActivity('recreational')
@@ -63,7 +54,7 @@ function getImage(keyword) {
             $('#gif-container').append("<img id='gif' src=" + imageUrl + ">")
         })
 }
-getImage('bike-ride')
+getImage('hike')
 
 function getWeather(location) {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=" + weatherKey)
@@ -97,13 +88,6 @@ function getWeather(location) {
 }
 //Make Austin our default location
 getWeather('Austin')
-
-
-
-
-
-
-
 
 //submit function
 $('#submit').on("click", function (event) {
