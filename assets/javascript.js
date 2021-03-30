@@ -2,6 +2,27 @@
 var giphyKey = 'qde5re80EUg2L5yAKth9QabSkIrGiKWb'
 var weatherKey = '324a506b2f6b0f1b44fde14916e4b006'
 
+
+
+function getActivity(activity){
+    /*
+    POSSIBLE RESPONSES:
+    ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"]
+    */
+    fetch("http://www.boredapi.com/api/activity?type=" + activity )
+    .then(function(response){
+        console.log(response)
+        return response.json();
+    })
+    .then(function(data3){
+        console.log(data3)
+
+        var suggestion = data3.activity
+        $("#suggestion-container").append("<h4>" + suggestion + "</h4>")
+    })
+}
+getActivity('recreational')
+
 function getImage(keyword) {
     //get keyword value
     /* Here we will have to create an array of posible things to do according to conditions.
@@ -33,7 +54,7 @@ function getImage(keyword) {
             $('#gif-container').append("<img id='gif' src=" + imageUrl + ">")
         })
 }
-getImage('bike-ride')
+getImage('hike')
 
 function getWeather(location) {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=" + weatherKey)
