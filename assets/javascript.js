@@ -81,7 +81,7 @@ $('#submit').on("click", function (event) {
     getWeather(currentLocation);
 })
 
-const herpformME = document.querySelector('.herp-form');
-const form = document.querySelector('form');
-const getName = document.querySelector('#name');
-const submitBtn =  document.querySelector('submit');
+var herpformME = document.querySelector('.herp-form');
+var form = document.querySelector('form');
+var getName = document.querySelector('#name');
+var submitBtn =  document.querySelector('submit');
