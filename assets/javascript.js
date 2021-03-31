@@ -41,10 +41,10 @@ function getWeather(location) {
                 ["charity","education"]
                 */
             if( mainTemp > 63 && mainTemp < 99  ){
-                activity = 'recreational'
+                activity = 'social'
                 console.log(activity)
             }else {
-                activity = "relaxation"
+                activity = "recreational"
                 console.log(activity)
             }
             return fetch("http://www.boredapi.com/api/activity?type=" + activity)
@@ -79,12 +79,12 @@ function getWeather(location) {
             $('#gif-container').append("<img id='gif' src=" + imageUrl + ">")
         })
         .catch(function (error) {
-            alert("404 data not found")
+            console.log("404 data not found")
             return
         })
 }
 //Make Austin our default location
-getWeather('Austin')
+getWeather()
 
 //submit function
 $('#submit').on("click", function (event) {
@@ -96,5 +96,8 @@ $('#submit').on("click", function (event) {
 
     $("#location").val("");
     //call getWeather on click
+    $(".hero").attr("class","hide")
+    $(".page-content").removeAttr("class","hide")
+
     getWeather(currentLocation);
 })
