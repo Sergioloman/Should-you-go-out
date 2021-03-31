@@ -101,3 +101,22 @@ $('#submit').on("click", function (event) {
 
     getWeather(currentLocation);
 })
+
+const herpformME = document.querySelector('.herp-form');
+const form = document.querySelector('form');
+const getName = document.querySelector('#name');
+const getLocation = document.querySelector('#location');
+const submitBtn =  document.querySelector('submit');
+
+
+
+function nameDisplayCheck() {
+    if (localStorage.getItem('name')) {
+        let name = localStorage.getItem('name');
+    }
+}
+function locationDisplayCheck() {
+    if (localStorage.getItem('location')) {
+        let location = localStorage.getItem('location');
+    }
+} 
