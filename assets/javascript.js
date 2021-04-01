@@ -27,7 +27,7 @@ function getWeather(location) {
 
             //City weather icon
             var weatherCode = data2.weather[0].icon
-            var imageLink = "http://openweathermap.org/img/wn/" + weatherCode + "@2x.png"
+            var imageLink = "https://openweathermap.org/img/wn/" + weatherCode + "@2x.png"
             $("#weather-container").append("<img id='weatherIcon' src=" + imageLink + ">");
 
             //Weather data// what other conditions do we want?
@@ -61,7 +61,7 @@ function getWeather(location) {
                 activity = "relaxation"
                 console.log(activity)
             }
-            return fetch("http://www.boredapi.com/api/activity?type=" + activity)
+            return fetch("https://www.boredapi.com/api/activity?type=" + activity)
 
         })
         .then(function (response) {
@@ -129,6 +129,6 @@ $('#submit').on("click", function (event) {
 $('.button').on("click", function (event) {
 
     //use values from Local Storage to call functions
-    $('#name').val(localName)
+    $('#name').val(localStorage.getItem("name"))
     getWeather(localCity)
 })
