@@ -2,11 +2,11 @@
 var giphyKey = 'qde5re80EUg2L5yAKth9QabSkIrGiKWb'
 var weatherKey = '324a506b2f6b0f1b44fde14916e4b006'
 
-//Fetch values from Local Storage
-var localName = localStorage.getItem("name");
+//Fetch City value from Local Storage
 var localCity = localStorage.getItem("city");
 
 function getWeather(location) {
+    
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=" + weatherKey)
         .then(function (response2) {
             console.log(response2)
@@ -14,6 +14,10 @@ function getWeather(location) {
         })
         .then(function (data2) {
             console.log(data2)
+
+            //Fetch LocalName value from Local Storage
+            var localName = localStorage.getItem("name");
+            console.log (localName)
 
             //empty html before each fetch
             $("#weather-container").empty();
@@ -98,6 +102,7 @@ getWeather()
 
 //submit function
 $('#submit').on("click", function (event) {
+    
     event.preventDefault();
 
     //get value from form
@@ -127,9 +132,3 @@ $('.button').on("click", function (event) {
     $('#name').val(localName)
     getWeather(localCity)
 })
-/*Unfortunately, the code below does not work*/
-// Store
-// window.localStorage
-// localStorage.getItem(location, ""); 
-// localStorage.getItem(giphyKey, "");
-// localStorage.getItem(weatherKey, "");
