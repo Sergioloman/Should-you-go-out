@@ -5,8 +5,10 @@ var weatherKey = '324a506b2f6b0f1b44fde14916e4b006'
 //Fetch values from Local Storage
 var localName = localStorage.getItem("name");
 var localCity = localStorage.getItem("city");
+console.log (localName)
 
 function getWeather(location) {
+    console.log (localName)
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=" + weatherKey)
         .then(function (response2) {
             console.log(response2)
@@ -98,6 +100,7 @@ getWeather()
 
 //submit function
 $('#submit').on("click", function (event) {
+    console.log (localName)
     event.preventDefault();
 
     //get value from form
