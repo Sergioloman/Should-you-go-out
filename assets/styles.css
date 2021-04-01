@@ -27,5 +27,15 @@ footer{
 }
 .page-content {
     text-align: center;
-    display: block;
+    display: flex;
+    justify-content: space-evenly;
+ }
+ #suggestion-container{
+    display: flex;
+    justify-content: center;
+ }
+ .button{
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content: center;
  }
