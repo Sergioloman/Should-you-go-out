@@ -1,3 +1,4 @@
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -39,3 +40,8 @@ footer{
     flex-wrap:wrap ;
     justify-content: center;
  }
+
+.hide{
+    display: none;
+}
+
