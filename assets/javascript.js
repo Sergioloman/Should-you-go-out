@@ -98,22 +98,32 @@ $('#submit').on("click", function (event) {
     $(".hero").attr("class","hide")
     $(".page-content").removeAttr("class","hide")
 
+    //setting city value to local storage
+    localStorage.setItem("city", currentLocation)
 
+    //setting Name value to local storage
+    var userName = $('#name').val().trim()
+    localStorage.setItem("name", userName)
+    
+    
     getWeather(currentLocation);
 })
-
-//local storage sets a value to LS
 
 //refresh button
 $('.button').on("click", function(event){
         //something happens when we hit refresh- get new suggestion + gets new giph. keeps name and location
     console.log(" this function returns new suggestions + gifs")
-        //getWeather(Localstoragevalue)
-
+        
+    //Fetch values from Local Storage
+    var localName = localStorage.getItem("name");
+    var localCity = localStorage.getItem("city");
+    //use values from Local Storage
+    $('#name').val(localName)
+    getWeather(localCity)
 })
-
+/*Unfortunately, the code below does not work*/
 // Store
-window.localStorage
-localStorage.getItem(location, ""); 
-localStorage.getItem(giphyKey, "");
-localStorage.getItem(weatherKey, "");
+// window.localStorage
+// localStorage.getItem(location, ""); 
+// localStorage.getItem(giphyKey, "");
+// localStorage.getItem(weatherKey, "");
