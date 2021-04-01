@@ -54,9 +54,10 @@ function getWeather(location) {
         })
         .then(function (data3) {
             console.log(data3)
-
+            //append name of user pulling from local storage
+            
             $('#suggestion-container').empty()
-
+            //append suggestion
             var suggestion = data3.activity
             $("#suggestion-container").append("<h4>" + suggestion + "</h4>")
             return fetch("https://api.giphy.com/v1/gifs/search?api_key=" + giphyKey + "&q=" + suggestion + "&limit=25&offset=0&rating=pg&lang=en")
@@ -97,7 +98,18 @@ $('#submit').on("click", function (event) {
     $(".hero").attr("class","hide")
     $(".page-content").removeAttr("class","hide")
 
+
     getWeather(currentLocation);
+})
+
+//local storage sets a value to LS
+
+//refresh button
+$('.button').on("click", function(event){
+        //something happens when we hit refresh- get new suggestion + gets new giph. keeps name and location
+    console.log(" this function returns new suggestions + gifs")
+        //getWeather(Localstoragevalue)
+
 })
 
 const herpformME = document.querySelector('.herp-form');
