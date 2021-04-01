@@ -97,7 +97,18 @@ $('#submit').on("click", function (event) {
     $(".hero").attr("class","hide")
     $(".page-content").removeAttr("class","hide")
 
+
     getWeather(currentLocation);
+})
+
+//local storage sets a value to LS
+
+//refresh button
+$('.button').on("click", function(event){
+        //something happens when we hit refresh- get new suggestion + gets new giph. keeps name and location
+    console.log(" this function returns new suggestions + gifs")
+        //getWeather(Localstoragevalue)
+
 })
 
 const herpformME = document.querySelector('.herp-form');
