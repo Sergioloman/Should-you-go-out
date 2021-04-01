@@ -114,6 +114,12 @@ $('.button').on("click", function(event){
 
 // Store
 window.localStorage
-localStorage.getItem(location, ""); 
-localStorage.getItem(giphyKey, "");
-localStorage.getItem(weatherKey, "");
+
+localStorage.getItem("yourname","");
+localStorage.getItem("yourlocation", ""); 
+
+
+console.log("location");  
+// Retrieve
+document.getElementById("result").innerHTML = localStorage.name;
+document.getElementById("result").innerHTML = localStorage.location;
