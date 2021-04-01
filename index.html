@@ -4,40 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ProjectUno</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
 </head>
 
 <body>
-    <header>
-        <h1 class="page-title title">Should You Go Outside Today?</h1>
+    <header class="title-container">
+        <h1 class="page-title title" id="title">Should You Go Outside Today?</h1>
     </header>
-    <section class="hero">
-        <div class="hero=cta subtitle pb-0 mb-2 is-capitalized">
-            <h2>Fill out the form to find out what you should do today.</h2>
-        </div>
-        <div class="herp-form">
-            <h2 class="page-title subtitle mb-2 is-capitalized">Tell us who you are!</h2>
-            <form>
-                <label for="name">Enter Your Name</label>
-                <input type="text" placeholder="Your Name" name="name" id="name" class="form-input mt-0">
+    <section class="hero is-medium">
+        <div class="hero-body">
+            <div class="hero=cta subtitle pb-0 mb-2 is-capitalized">
+                <h2>Fill out the form to find out what you should do today.</h2>
+            </div>
+            <div class="herp-form">
+                <h2 class="page-title subtitle mb-2 is-capitalized">Tell us who you are!</h2>
+                <form>
+                    <label for="name">Enter Your Name</label>
+                    <input type="text" placeholder="Your Name" name="name" id="name" class="form-input mt-0">
 
-                <label for="location">Enter Your Location</label>
-                <input type="text" placeholder="Your Location" name="location" id="location">
+                    <label for="location">Enter Your Location</label>
+                    <input type="text" placeholder="Your Location" name="location" id="location">
 
-                <input type="submit" value="Submit" id="submit">
-            </form>
+                    <input type="submit" value="Submit" id="submit">
+                </form>
+            </div>
         </div>
     </section>
     <main class="page-content pt-6 is-capitalized hide">
         <div id='suggestion-container'></div>
-        <div id='weather-container'></div>
-        <div id='gif-container'></div>
+        <div class="columns">
+            <div class="column" id='weather-container'></div>    
+            <div class="column" id='gif-container'></div>
+        </div>
+        <input  type="reset" value="New Suggestions!">
     </main>
-    <input class="button" type="reset" value="Refresh">
-    <footer>
+    <footer class="footer">
         &copy; 2021 by ProjectUno
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.js"

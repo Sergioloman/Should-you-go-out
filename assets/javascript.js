@@ -2,6 +2,10 @@
 var giphyKey = 'qde5re80EUg2L5yAKth9QabSkIrGiKWb'
 var weatherKey = '324a506b2f6b0f1b44fde14916e4b006'
 
+//Fetch values from Local Storage
+var localName = localStorage.getItem("name");
+var localCity = localStorage.getItem("city");
+
 function getWeather(location) {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=" + weatherKey)
         .then(function (response2) {
@@ -29,20 +33,28 @@ function getWeather(location) {
             $("#weather-container").append("<p>" + "Temperature: " + mainTemp + " °F" + "</p>");
 
             var activity = "";
-                /*
-                POSSIBLE RESPONSES:
-                goOut:
-                ["recreational", "social",  "busywork"]
-                stayIn:
-                ["diy", "cooking", "relaxation", "music"]
-                other:
-                ["charity","education"]
-                */
-            if( mainTemp > 63 && mainTemp < 99  ){
+            /*
+            POSSIBLE RESPONSES:
+            goOut:
+            ["recreational", "social",  "busywork"]
+            stayIn:
+            ["diy", "cooking", "relaxation", "music"]
+            other:
+            ["charity","education"]
+            */
+            if (mainTemp > 63 && mainTemp < 99) {
                 activity = 'social'
                 console.log(activity)
-            }else {
-                activity = "recreational"
+                // append YES! 
+                $('.title-container').empty()
+                $('.title-container').append("<h1 class='page-title title'>" + "Yes! " + localName + ", seize the day!" + "<h1>")
+
+            } else {
+                // append NO! 
+                $('.title-container').empty()
+                $('.title-container').append("<h1 class='page-title title'>" + "Nah, " + localName + ", outdoors are overrated anyways!" + "<h1>")
+
+                activity = "relaxation"
                 console.log(activity)
             }
             return fetch("http://www.boredapi.com/api/activity?type=" + activity)
@@ -54,8 +66,7 @@ function getWeather(location) {
         })
         .then(function (data3) {
             console.log(data3)
-            //append name of user pulling from local storage
-            
+
             $('#suggestion-container').empty()
             //append suggestion
             var suggestion = data3.activity
@@ -95,38 +106,30 @@ $('#submit').on("click", function (event) {
 
     $("#location").val("");
     //call getWeather on click
-    $(".hero").attr("class","hide")
-    $(".page-content").removeAttr("class","hide")
+    $(".hero").attr("class", "hide")
+    $("#title").attr("class", "hide")
+    $(".page-content").removeAttr("class", "hide")
 
+    //setting city value to local storage
+    localStorage.setItem("city", currentLocation)
+
+    //setting Name value to local storage
+    var userName = $('#name').val().trim()
+    localStorage.setItem("name", userName)
 
     getWeather(currentLocation);
 })
 
-//local storage sets a value to LS
-
 //refresh button
-$('.button').on("click", function(event){
-        //something happens when we hit refresh- get new suggestion + gets new giph. keeps name and location
-    console.log(" this function returns new suggestions + gifs")
-        //getWeather(Localstoragevalue)
+$('.button').on("click", function (event) {
 
+    //use values from Local Storage to call functions
+    $('#name').val(localName)
+    getWeather(localCity)
 })
-
-const herpformME = document.querySelector('.herp-form');
-const form = document.querySelector('form');
-const getName = document.querySelector('#name');
-const getLocation = document.querySelector('#location');
-const submitBtn =  document.querySelector('submit');
-
-
-
-function nameDisplayCheck() {
-    if (localStorage.getItem('name')) {
-        let name = localStorage.getItem('name');
-    }
-}
-function locationDisplayCheck() {
-    if (localStorage.getItem('location')) {
-        let location = localStorage.getItem('location');
-    }
-} 
+/*Unfortunately, the code below does not work*/
+// Store
+// window.localStorage
+// localStorage.getItem(location, ""); 
+// localStorage.getItem(giphyKey, "");
+// localStorage.getItem(weatherKey, "");
