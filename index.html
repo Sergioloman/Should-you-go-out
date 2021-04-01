@@ -6,35 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ProjectUno</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 
 <body>
     <header>
-        <h1 class="page-title">Should You Go Outside Today?</h1>
+        <h1 class="page-title title">Should You Go Outside Today?</h1>
     </header>
     <section class="hero">
-        <div class="hero=cta">
+        <div class="hero=cta subtitle pb-0 mb-2 is-capitalized">
             <h2>Fill out the form to find out what you should do today.</h2>
         </div>
         <div class="herp-form">
-            <h2 class="page-title">Tell Us Who You Are!</h2>
+            <h2 class="page-title subtitle mb-2 is-capitalized">Tell us who you are!</h2>
             <form>
                 <label for="name">Enter Your Name</label>
-                <input type="text" placeholder="Your Name" name="name" id="name" class="form-input">
+                <input type="text" placeholder="Your Name" name="name" id="name" class="form-input mt-0">
 
                 <label for="location">Enter Your Location</label>
                 <input type="text" placeholder="Your Location" name="location" id="location">
 
                 <input type="submit" value="Submit" id="submit">
+                <div id='suggestion-container' class='hide'></div>
             </form>
         </div>
     </section>
-    <main class="page-content hide">
-        <div id='gif-container'></div>
-        <div id='suggestion-container'></div>
+    <main class="page-content pt-6 is-capitalized hide">
         <div id='weather-container'></div>
+        <div id='gif-container'></div>
     </main>
+    <input class="button" type="reset" value="Refresh">
     <footer>
         &copy; 2021 by ProjectUno
     </footer>
