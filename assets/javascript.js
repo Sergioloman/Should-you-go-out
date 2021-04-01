@@ -54,7 +54,7 @@ function getWeather(location) {
                 $('.title-container').empty()
                 $('.title-container').append("<h1 class='page-title title'>" + "Nah, " + localName + ", outdoors are overrated anyways!" + "<h1>")
 
-                activity = "recreational"
+                activity = "relaxation"
                 console.log(activity)
             }
             return fetch("http://www.boredapi.com/api/activity?type=" + activity)
