@@ -54,9 +54,10 @@ function getWeather(location) {
         })
         .then(function (data3) {
             console.log(data3)
-
+            //append name of user pulling from local storage
+            
             $('#suggestion-container').empty()
-
+            //append suggestion
             var suggestion = data3.activity
             $("#suggestion-container").append("<h4>" + suggestion + "</h4>")
             return fetch("https://api.giphy.com/v1/gifs/search?api_key=" + giphyKey + "&q=" + suggestion + "&limit=25&offset=0&rating=pg&lang=en")
