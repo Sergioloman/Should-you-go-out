@@ -11,30 +11,46 @@
 </head>
 
 <body>
-    <section class="hero is-medium is-success">
+    <section class="hero is-medium is-info">
         <div class="hero-body">
-            <div class="page-title title" id="title">Should You Go Outside Today?</h1>    
-            <div class="page-title subtitle mb-2 is-capitalized">First, tell us who you are!</h2>
-        </div>
+            <div class="page-title title" id="title">Should You Go Outside Today?</h1>
+                <div class="page-title subtitle mb-2 is-capitalized">First, tell us who you are!</h2>
+                </div>
     </section>
-    <section class="columns is-centered hero-form">
+    <section class="columns is-centered hero-form pt-6 pb-6">
         <div class="column is-half">
-                <form>
-                    <label for="name">Enter Your Name</label>
-                    <input type="text" placeholder="Your Name" name="name" id="name" class="form-input mt-0">
+            <div class="field is-horizontal is-grouped-multiline is-grouped">
 
-                    <label for="location">Enter Your Location</label>
-                    <input type="text" placeholder="Your Location" name="location" id="location">
+                <div class=" control  field-label is-medium">
+                    <label class="label">Name</label>
+                </div>
+                <div class="control field-body">
+                    <div class="field">
+                        <input class="input is-medium is-hovered" type="text" placeholder="Enter Your Name"  id="name" class="form-input mt-0">
+                    </div>
+                </div>
+                
+                <div class=" control field-label is-medium">
+                    <label class="label">Location</label>
+                </div>
+                <div class="control field-body">
+                    <div class="field">   
+                        <input class="input is-medium is-hovered" type="text" placeholder="Enter Your Location"  id="location">
+                    </div>
+                </div>
 
-                    <input type="submit" value="Submit" id="submit">
-                </form>
+                <div class="control">
+                    <div class="button is-medium is-primary" id="submit">Submit</div>                    
+                </div>
+                
+            </div>
         </div>
     </section>
     <main class="page-content pt-6 is-capitalized hide">
         <div class="title-container"></div>
         <div id='suggestion-container'></div>
         <div class="columns">
-            <div class="column" id='weather-container'></div>    
+            <div class="column" id='weather-container'></div>
             <div class="column" id='gif-container'></div>
         </div>
         <input class="button" type="reset" value="New Suggestions!">
