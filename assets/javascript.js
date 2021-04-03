@@ -112,7 +112,7 @@ $('#submit').on("click", function (event) {
     $("#location").val("");
     //call getWeather on click
     $(".hero").attr("class", "hide")
-    $("#title").attr("class", "hide")
+    $(".hero-form").attr("class", "hide")
     $(".page-content").removeAttr("class", "hide")
 
     //setting city value to local storage
