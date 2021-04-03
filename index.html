@@ -11,16 +11,14 @@
 </head>
 
 <body>
-    <header class="title-container">
-        <h1 class="page-title title" id="title">Should You Go Outside Today?</h1>
-    </header>
-    <section class="hero is-medium">
+    <section class="hero is-medium is-success">
         <div class="hero-body">
-            <div class="hero=cta subtitle pb-0 mb-2 is-capitalized">
-                <h2>Fill out the form to find out what you should do today.</h2>
-            </div>
-            <div class="herp-form">
-                <h2 class="page-title subtitle mb-2 is-capitalized">Tell us who you are!</h2>
+            <div class="page-title title" id="title">Should You Go Outside Today?</h1>    
+            <div class="page-title subtitle mb-2 is-capitalized">First, tell us who you are!</h2>
+        </div>
+    </section>
+    <section class="columns is-centered hero-form">
+        <div class="column is-half">
                 <form>
                     <label for="name">Enter Your Name</label>
                     <input type="text" placeholder="Your Name" name="name" id="name" class="form-input mt-0">
@@ -30,10 +28,10 @@
 
                     <input type="submit" value="Submit" id="submit">
                 </form>
-            </div>
         </div>
     </section>
     <main class="page-content pt-6 is-capitalized hide">
+        <div class="title-container"></div>
         <div id='suggestion-container'></div>
         <div class="columns">
             <div class="column" id='weather-container'></div>    
