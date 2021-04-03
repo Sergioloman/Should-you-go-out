@@ -9,7 +9,7 @@ function getWeather(location) {
     
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=" + weatherKey)
         .then(function (response2) {
-            console.log(response2)
+            
             return response2.json();
         })
         .then(function (data2) {
@@ -17,7 +17,7 @@ function getWeather(location) {
 
             //Fetch LocalName value from Local Storage
             var localName = localStorage.getItem("name");
-            console.log (localName)
+            
 
             //empty html before each fetch
             $("#weather-container").empty();
@@ -30,11 +30,23 @@ function getWeather(location) {
             var imageLink = "https://openweathermap.org/img/wn/" + weatherCode + "@2x.png"
             $("#weather-container").append("<img id='weatherIcon' src=" + imageLink + ">");
 
-            //Weather data// what other conditions do we want?
+            //Weather data// 
+
+            //description
             var descripTemp = data2.weather[0].description
             $("#weather-container").append("<p>" + descripTemp + "</p>");
+            //temperature
             var mainTemp = data2.main.temp
             $("#weather-container").append("<p>" + "Temperature: " + mainTemp + " °F" + "</p>");
+            //humimidty
+            var humidity = data2.main.humidity
+            $("#weather-container").append("<p>" + "Humidity: " + humidity + " %" + "</p>");
+            //wind
+            var wind = data2.wind.speed
+            $("#weather-container").append("<p>" + "Wind Speed: " + wind + " MPH" + "</p>");
+            //overall condition ( this may include extreme weather as well)
+            var genCondition = data2.weather[0].main
+
 
             var activity = "";
             /*
@@ -46,26 +58,26 @@ function getWeather(location) {
             other:
             ["charity","education"]
             */
-            if (mainTemp > 63 && mainTemp < 99) {
+            if (mainTemp > 63 && mainTemp < 99 && genCondition !== "Rain" && genCondition !== "Extreme" && genCondition !== "Snow") {
                 activity = 'social'
-                console.log(activity)
-                // append YES! 
+                
+                // append Go Out 
                 $('.title-container').empty()
                 $('.title-container').append("<h1 class='page-title title'>" + "Yes! " + localName + ", seize the day!" + "<h1>")
 
             } else {
-                // append NO! 
+                // append Stay Inside
                 $('.title-container').empty()
                 $('.title-container').append("<h1 class='page-title title'>" + "Nah, " + localName + ", outdoors are overrated anyways!" + "<h1>")
 
                 activity = "relaxation"
-                console.log(activity)
+                
             }
             return fetch("https://www.boredapi.com/api/activity?type=" + activity)
 
         })
         .then(function (response) {
-            console.log(response)
+            
             return response.json();
         })
         .then(function (data3) {
@@ -78,7 +90,7 @@ function getWeather(location) {
             return fetch("https://api.giphy.com/v1/gifs/search?api_key=" + giphyKey + "&q=" + suggestion + "&limit=25&offset=0&rating=pg&lang=en")
         })
         .then(function (response) {
-            console.log(response)
+            
             return response.json();
         })
         .then(function (data) {
@@ -107,7 +119,7 @@ $('#submit').on("click", function (event) {
 
     //get value from form
     var currentLocation = $("#location").val().trim();
-    console.log(currentLocation);
+    
 
     $("#location").val("");
     //call getWeather on click
