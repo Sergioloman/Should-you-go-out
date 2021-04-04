@@ -41,12 +41,12 @@ function getWeather(location) {
 
             //empy variable for Activity
             var activity = "";
-            
+
             //Conditional: Linking weather parameters with activities
             if (mainTemp > 63 && mainTemp < 99 && genCondition !== "Rain" && genCondition !== "Extreme" && genCondition !== "Snow") {
                 //setting value of var=activity to going out / possible categories: ["recreational", "social",  "busywork"]
                 activity = 'social'
-                
+
                 // append Go Out 
                 $('.title-container').empty()
                 $('.title-container').append("<h1 class='page-title title'>" + "Yes! " + localName + ", seize the day!" + "<h1>")
@@ -57,7 +57,7 @@ function getWeather(location) {
                 $('.title-container').append("<h1 class='page-title title'>" + "Nah, " + localName + ", outdoors are overrated anyways!" + "<h1>")
                 //setting value of var=activity to staying in / possible categories: ["diy", "cooking", "relaxation", "music"]
                 activity = "relaxation"
-                
+
             }
             return fetch("https://www.boredapi.com/api/activity?type=" + activity)
 
@@ -118,7 +118,7 @@ $('#submit').on("click", function (event) {
     getWeather(currentLocation);
 })
 
-//getting a new suggestion
+//new suggestion function
 $('.button').on("click", function (event) {
 
     //use values from Local Storage to call functions
