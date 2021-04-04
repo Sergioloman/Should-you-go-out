@@ -2,64 +2,7 @@
 var giphyKey = 'qde5re80EUg2L5yAKth9QabSkIrGiKWb'
 var weatherKey = '324a506b2f6b0f1b44fde14916e4b006'
 
-<<<<<<< HEAD
-var submit = document.querySelector("#submit");
-var refresh = document.querySelector(".button")
-
-function getActivity(activity){
-    /*
-    POSSIBLE RESPONSES:
-    ["education", "recreational", "social", "diy", "charity", "cooking", "relaxation", "music", "busywork"]
-    */
-    fetch("http://www.boredapi.com/api/activity?type=" + activity )
-    .then(function(response){
-        console.log(response)
-        return response.json();
-    })
-    .then(function(data3){
-        console.log(data3)
-
-        var suggestion = data3.activity
-        $("#suggestion-container").append("<h4>" + suggestion + "</h4>")
-    })
-}
-getActivity('recreational')
-
-function getImage(keyword) {
-    //get keyword value
-    /* Here we will have to create an array of posible things to do according to conditions.
-    like
-
-    let favorable = [ running, hiking, etc ]
-      
-    let unfavorable = [ reading, painting, etc]
-
-    later we make a logic :  if CURRENT TEMP < 60 then UNFAVORABLE random keyword
-                                    or 
-                                CURRENT TEMP > 60 then FAVORABLE random keyword
-    */
-    //get a PG giphy 
-    fetch("https://api.giphy.com/v1/gifs/search?api_key=" + giphyKey + "&q=" + keyword + "&limit=25&offset=0&rating=pg&lang=en")
-        .then(function (response) {
-            console.log(response)
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data)
-
-            //empty html container
-            $('#gif-container').empty()
-
-            //find the link for the gif's // need logic for random GIF
-            var imageUrl = data.data[0].images.original.url
-            //append image
-            $('#gif-container').append("<img id='gif' src=" + imageUrl + ">")
-        })
-}
-getImage('hike')
-=======
 //try nesting the functions so you can work on your values.
->>>>>>> 9eef92b20c5b7fc4da156bc062fc54aa52b0369f
 
 function getWeather(location) {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=" + weatherKey)
