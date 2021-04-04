@@ -2,6 +2,7 @@
 var giphyKey = 'qde5re80EUg2L5yAKth9QabSkIrGiKWb'
 var weatherKey = '324a506b2f6b0f1b44fde14916e4b006'
 
+<<<<<<< HEAD
 var submit = document.querySelector("#submit");
 var refresh = document.querySelector(".button")
 
@@ -56,6 +57,9 @@ function getImage(keyword) {
         })
 }
 getImage('hike')
+=======
+//try nesting the functions so you can work on your values.
+>>>>>>> 9eef92b20c5b7fc4da156bc062fc54aa52b0369f
 
 function getWeather(location) {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=" + weatherKey)
@@ -78,17 +82,66 @@ function getWeather(location) {
             $("#weather-container").append("<img id='weatherIcon' src=" + imageLink + ">");
 
             //Weather data// what other conditions do we want?
-            $("#weather-container").append("<p>" + data2.weather[0].description + "</p>");
-            $("#weather-container").append("<p>" + "Temperature: " + data2.main.temp + " °F" + "</p>");
-        })
+            var descripTemp = data2.weather[0].description
+            $("#weather-container").append("<p>" + descripTemp + "</p>");
+            var mainTemp = data2.main.temp
+            $("#weather-container").append("<p>" + "Temperature: " + mainTemp + " °F" + "</p>");
 
+            var activity = "";
+                /*
+                POSSIBLE RESPONSES:
+                goOut:
+                ["recreational", "social",  "busywork"]
+                stayIn:
+                ["diy", "cooking", "relaxation", "music"]
+                other:
+                ["charity","education"]
+                */
+            if( mainTemp > 63 && mainTemp < 99  ){
+                activity = 'social'
+                console.log(activity)
+            }else {
+                activity = "recreational"
+                console.log(activity)
+            }
+            return fetch("http://www.boredapi.com/api/activity?type=" + activity)
+
+        })
+        .then(function (response) {
+            console.log(response)
+            return response.json();
+        })
+        .then(function (data3) {
+            console.log(data3)
+
+            $('#suggestion-container').empty()
+
+            var suggestion = data3.activity
+            $("#suggestion-container").append("<h4>" + suggestion + "</h4>")
+            return fetch("https://api.giphy.com/v1/gifs/search?api_key=" + giphyKey + "&q=" + suggestion + "&limit=25&offset=0&rating=pg&lang=en")
+        })
+        .then(function (response) {
+            console.log(response)
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data)
+
+            //empty html container
+            $('#gif-container').empty()
+
+            //find the link for the gif's // need logic for random GIF
+            var imageUrl = data.data[0].images.original.url
+            //append image
+            $('#gif-container').append("<img id='gif' src=" + imageUrl + ">")
+        })
         .catch(function (error) {
-            alert("404 data not found")
+            console.log("404 data not found")
             return
         })
 }
 //Make Austin our default location
-getWeather('Austin')
+getWeather()
 
 //submit function
 $('#submit').on("click", function (event) {
@@ -100,5 +153,27 @@ $('#submit').on("click", function (event) {
 
     $("#location").val("");
     //call getWeather on click
+    $(".hero").attr("class","hide")
+    $(".page-content").removeAttr("class","hide")
+
     getWeather(currentLocation);
 })
+
+const herpformME = document.querySelector('.herp-form');
+const form = document.querySelector('form');
+const getName = document.querySelector('#name');
+const getLocation = document.querySelector('#location');
+const submitBtn =  document.querySelector('submit');
+
+
+
+function nameDisplayCheck() {
+    if (localStorage.getItem('name')) {
+        let name = localStorage.getItem('name');
+    }
+}
+function locationDisplayCheck() {
+    if (localStorage.getItem('location')) {
+        let location = localStorage.getItem('location');
+    }
+} 
