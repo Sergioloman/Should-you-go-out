@@ -14,11 +14,7 @@
     border: 1px solid;
     background-color: transparent;
 }
-/*#submit{
-    background-color: transparent;
-    text-decoration: none;
-    border: 1px solid black;
-}*/
+
 #submit:hover{
     text-decoration: underline ;
 }

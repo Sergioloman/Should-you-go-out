@@ -2,22 +2,14 @@
 var giphyKey = 'qde5re80EUg2L5yAKth9QabSkIrGiKWb'
 var weatherKey = '324a506b2f6b0f1b44fde14916e4b006'
 
-//Fetch City value from Local Storage
-var localCity = localStorage.getItem("city");
-
 function getWeather(location) {
-    
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=imperial&appid=" + weatherKey)
         .then(function (response2) {
-            
             return response2.json();
         })
         .then(function (data2) {
-            console.log(data2)
-
             //Fetch LocalName value from Local Storage
             var localName = localStorage.getItem("name");
-            
 
             //empty html before each fetch
             $("#weather-container").empty();
@@ -47,20 +39,14 @@ function getWeather(location) {
             //overall condition ( this may include extreme weather as well)
             var genCondition = data2.weather[0].main
 
-
+            //empy variable for Activity
             var activity = "";
-            /*
-            POSSIBLE RESPONSES:
-            goOut:
-            ["recreational", "social",  "busywork"]
-            stayIn:
-            ["diy", "cooking", "relaxation", "music"]
-            other:
-            ["charity","education"]
-            */
+
+            //Conditional: Linking weather parameters with activities
             if (mainTemp > 63 && mainTemp < 99 && genCondition !== "Rain" && genCondition !== "Extreme" && genCondition !== "Snow") {
+                //setting value of var=activity to going out / possible categories: ["recreational", "social",  "busywork"]
                 activity = 'social'
-                
+
                 // append Go Out 
                 $('.title-container').empty()
                 $('.title-container').append("<h1 class='page-title title'>" + "Yes! " + localName + ", seize the day!" + "<h1>")
@@ -69,39 +55,36 @@ function getWeather(location) {
                 // append Stay Inside
                 $('.title-container').empty()
                 $('.title-container').append("<h1 class='page-title title'>" + "Nah, " + localName + ", outdoors are overrated anyways!" + "<h1>")
-
+                //setting value of var=activity to staying in / possible categories: ["diy", "cooking", "relaxation", "music"]
                 activity = "relaxation"
-                
+
             }
             return fetch("https://www.boredapi.com/api/activity?type=" + activity)
 
         })
         .then(function (response) {
-            
             return response.json();
         })
         .then(function (data3) {
-            console.log(data3)
-
+            //empty html container
             $('#suggestion-container').empty()
-            //append suggestion
+            //Variable suggestion will hold activity from BoredAPI
             var suggestion = data3.activity
+            //Appending suggestion to html
             $("#suggestion-container").append("<h4>" + suggestion + "</h4>")
+            //Passing suggestion from BoredAPI into the Giphy URL as a search parameter
             return fetch("https://api.giphy.com/v1/gifs/search?api_key=" + giphyKey + "&q=" + suggestion + "&limit=25&offset=0&rating=pg&lang=en")
         })
         .then(function (response) {
-            
             return response.json();
         })
         .then(function (data) {
-            console.log(data)
-
             //empty html container
             $('#gif-container').empty()
 
-            //find the link for the gif's // need logic for random GIF
+            //find the link for the gif's
             var imageUrl = data.data[0].images.original.url
-            //append image
+            //append image using the var=imageURL
             $('#gif-container').append("<img id='gif' src=" + imageUrl + ">")
         })
         .catch(function (error) {
@@ -109,19 +92,15 @@ function getWeather(location) {
             return
         })
 }
-//Make Austin our default location
-getWeather()
 
 //submit function
 $('#submit').on("click", function (event) {
-    
     event.preventDefault();
 
-    //get value from form
+    //get location value from form
     var currentLocation = $("#location").val().trim();
-    
-
     $("#location").val("");
+
     //call getWeather on click
     $(".hero").attr("class", "hide")
     $(".hero-form").attr("class", "hide")
@@ -133,14 +112,16 @@ $('#submit').on("click", function (event) {
     //setting Name value to local storage
     var userName = $('#name').val().trim()
     localStorage.setItem("name", userName)
+    console.log(userName)
 
+    //Calling our main function with input location/username
     getWeather(currentLocation);
 })
 
-//refresh button
+//new suggestion function
 $('.button').on("click", function (event) {
 
     //use values from Local Storage to call functions
     $('#name').val(localStorage.getItem("name"))
-    getWeather(localCity)
+    getWeather(localStorage.getItem("city"))
 })
